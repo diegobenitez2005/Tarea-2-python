@@ -6,21 +6,31 @@ def añadir_producto():
     nombre=str(input("Nombre del producto: "))
     precio=str(input("Ingresa el precio: "))
     cantidad=str(input("Ingrese la cantidad en stock: "))
+    if productos == []:
+        producto['nombre'] = nombre
+        producto['precio'] = precio +"$"
+        producto['cantidad'] = cantidad
+        productos.append(producto)
+    elif productos != []:
+        producto['nombre'] = nombre
+        producto['precio'] = precio +"$"
+        producto['cantidad'] = cantidad
+        for item in productos:
+            if item['nombre'] == nombre:
+                print("")
+                print("Error el producto ya existe, volviendo al menú")
+                print("")
+                return
     
-    producto['nombre'] = nombre
-    producto['precio'] = precio +"$"
-    producto['cantidad'] = cantidad
+     
     
-    productos.append(producto)
-   
-
-
+        
+    
+    
 def ver_productos():
     for producto in productos:
         print(f'{producto}\n')
     
-    
-
 def actualizar_producto():
         for producto in productos:
             
@@ -45,20 +55,11 @@ def actualizar_producto():
                     producto['cantidad'] = newCant
                     break
                 else:
-                    print("Numero ingresado no valido , volviendo al menú")
+                    print("Numero ingresado no valido, volviendo al menú")
                     break
             else:
                 print("El producto no existe")
                 
-
-                    
-        
-                
-                
-               
-        
-            
-    
 
 def eliminar_producto():
     nombreEliminar= str(input("Ingrese el nombre del producto que desea eliminar: "))
@@ -85,12 +86,8 @@ def cargar_datos():
 
 
 def menu():
-   
     cargar_datos()
-  
     print(" <----------------------------------------------------------------------------------------------------------------------------> ")
-
-
     while True:
             print("1: Añadir producto\n")
             print("2: Ver todos los productos\n")
@@ -115,14 +112,16 @@ def menu():
                 print("")
                 print("Por favor ingrese una opcion valida")
                 print("")
-  
-  
-
-
 print("")
 print("-----BIENVINIDO-----")
 print("")
-
-
 menu()
+
+                
+               
+        
+            
+    
+
+
   
