@@ -1,0 +1,2 @@
+{'nombre': 'agua', 'precio': '200$', 'cantidad': '2500'}
+{'nombre': 'coca cola', 'precio': '5000$', 'cantidad': '560'}

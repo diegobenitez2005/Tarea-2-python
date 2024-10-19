@@ -1,3 +1,4 @@
+import ast #Sirve para interpretar strings como estructuras de python
 productos = []
 
 def añadir_producto():
@@ -6,22 +7,23 @@ def añadir_producto():
     nombre=str(input("Nombre del producto: "))
     precio=str(input("Ingresa el precio: "))
     cantidad=str(input("Ingrese la cantidad en stock: "))
+    producto['nombre'] = nombre
+
     if productos == []:
-        producto['nombre'] = nombre
         producto['precio'] = precio +"$"
         producto['cantidad'] = cantidad
         productos.append(producto)
     elif productos != []:
-        producto['nombre'] = nombre
-        producto['precio'] = precio +"$"
-        producto['cantidad'] = cantidad
         for item in productos:
             if item['nombre'] == nombre:
                 print("")
                 print("Error el producto ya existe, volviendo al menú")
                 print("")
                 return
-    
+        producto['precio'] = precio +"$"
+        producto['cantidad'] = cantidad    
+        productos.append(producto)
+
      
     
         
@@ -79,6 +81,9 @@ def guardar_datos():
 def cargar_datos():
     try:
         file_leer= open("productos.txt","r")
+        for linea in file_leer:
+            producto = ast.literal_eval(linea.strip())
+            productos.append(producto)
         print(file_leer.read())
         file_leer.close()
     except FileNotFoundError:
@@ -95,7 +100,7 @@ def menu():
             print("4: Eliminar producto\n")
             print("5: Guardar datos y salir\n")     
     
-            opcion = (input("Seleccione una opción: \n"))
+            opcion = (input("Seleccione una opción: "))
 
             if opcion == "1" :
                 añadir_producto()
